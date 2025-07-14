@@ -1,0 +1,102 @@
+import React from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { CheckCircle, XCircle, AlertTriangle, Info } from 'lucide-react';
+
+// Типы уведомлений
+export type ToastType = 'success' | 'error' | 'warning' | 'info';
+
+// Конфигурация для разных типов уведомлений
+const toastConfig = {
+  success: {
+    icon: <CheckCircle className="w-5 h-5 text-green-600" />,
+    className: 'bg-green-50 border-green-200 text-green-800',
+  },
+  error: {
+    icon: <XCircle className="w-5 h-5 text-red-600" />,
+    className: 'bg-red-50 border-red-200 text-red-800',
+  },
+  warning: {
+    icon: <AlertTriangle className="w-5 h-5 text-yellow-600" />,
+    className: 'bg-yellow-50 border-yellow-200 text-yellow-800',
+  },
+  info: {
+    icon: <Info className="w-5 h-5 text-blue-600" />,
+    className: 'bg-blue-50 border-blue-200 text-blue-800',
+  },
+};
+
+// Функции для показа уведомлений
+export const showToast = {
+  success: (message: string) => {
+    const config = toastConfig.success;
+    toast.success(message, {
+      icon: config.icon,
+      style: {
+        background: 'white',
+        border: '1px solid #d1d5db',
+        borderRadius: '12px',
+        padding: '12px 16px',
+      },
+    });
+  },
+  
+  error: (message: string) => {
+    const config = toastConfig.error;
+    toast.error(message, {
+      icon: config.icon,
+      style: {
+        background: 'white',
+        border: '1px solid #d1d5db',
+        borderRadius: '12px',
+        padding: '12px 16px',
+      },
+    });
+  },
+  
+  warning: (message: string) => {
+    const config = toastConfig.warning;
+    toast(message, {
+      icon: config.icon,
+      style: {
+        background: 'white',
+        border: '1px solid #d1d5db',
+        borderRadius: '12px',
+        padding: '12px 16px',
+      },
+    });
+  },
+  
+  info: (message: string) => {
+    const config = toastConfig.info;
+    toast(message, {
+      icon: config.icon,
+      style: {
+        background: 'white',
+        border: '1px solid #d1d5db',
+        borderRadius: '12px',
+        padding: '12px 16px',
+      },
+    });
+  },
+};
+
+// Компонент для рендера уведомлений
+export const ToastContainer: React.FC = () => {
+  return (
+    <Toaster
+      position="top-right"
+      toastOptions={{
+        duration: 4000,
+        style: {
+          background: 'white',
+          border: '1px solid #d1d5db',
+          borderRadius: '12px',
+          padding: '12px 16px',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        },
+      }}
+    />
+  );
+};
+
+export default ToastContainer; 
